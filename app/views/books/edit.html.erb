@@ -1,0 +1,51 @@
+<!-- app/views/books/edit.html.erb -->
+<style>
+  div {
+    margin-bottom: 10px;
+  }
+  
+  .links {
+    margin-top: 20px;
+  }
+  
+  .links a {
+    margin-right: 10px;
+    text-decoration: none;
+  }
+</style>
+
+<h1>Editing Book</h1>
+
+<%= form_with(model: @book, local: true) do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+  
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </div>
+  
+  <div>
+    <%= form.submit "Update Book" %>
+  </div>
+<% end %>
+
+
+
+<div class="links">
+  <%= link_to 'Show', book_path(@book) %> |
+  <%= link_to 'Back', books_path %>
+</div>
+
+<% if @book.errors.any? %>
+  <div class="error-message">
+    <h2><%= @book.errors.count %>件のエラーが発生しました</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
